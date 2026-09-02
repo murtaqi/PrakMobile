@@ -13,21 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Row and Column',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: Scaffold(
@@ -35,14 +20,26 @@ class MyApp extends StatelessWidget {
           title: Text('Row and Column')
         ),
         body: Center(
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              KotakBiruJempol(),
-              SizedBox(width: 20),
-              KotakBiruJempol(),
-              SizedBox(width: 20),
-              KotakBiruJempol()
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  KotakLove(bgColor: Colors.orange, label: "Kotak 1"),
+                  SizedBox(width: 50,),
+                  KotakLove(bgColor: Colors.yellow, label: "Kotak 2")
+                ],
+              ),
+              const SizedBox(height: 50,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  KotakLove(bgColor: Colors.green, label: "Kotak 3"),
+                  SizedBox(width: 50,),
+                  KotakLove(bgColor: Colors.blue, label: "Kotak 4")
+                ],
+              )
             ],
           ),
         ),
@@ -50,6 +47,48 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class KotakLove extends StatelessWidget {
+  final Color bgColor;
+  final String label;
+
+  const KotakLove({
+    super.key,
+    required this.bgColor,
+    required this.label
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: bgColor,
+        border: Border.all(color: Colors.black, width: 2),
+        borderRadius: BorderRadius.circular(12)
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.favorite,
+            color: Colors.red,
+            size: 40,
+          ),
+          const SizedBox(height: 8,),
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.black
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
 
 class KotakBiruJempol extends StatelessWidget{
   @override
